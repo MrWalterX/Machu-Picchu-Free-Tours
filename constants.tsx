@@ -74,17 +74,68 @@ export const TOURS: TourDetail[] = [
     exclusions: ['Tips (Gratuity based)', 'Personal expenses', 'Museum entry tickets'],
   },
   {
+    id: 'food-tour-cusco',
+    name: 'Inca Eats & Streets',
+    category: 'Free',
+    duration: '2 Hours',
+    difficulty: 'Easy',
+    description: 'A vibrant night-time street food adventure through Cusco\'s hidden corners. Starts daily at 6:30 PM.',
+    longDescription: 'Cusco comes alive at night. This tour takes you through the atmospheric cobblestone streets to discover the authentic night market energy. Sample the city\'s most famous street foods, from savory tamales to sweet picarones, finishing with a traditional warm emoliente.',
+    image: 'food-tour-prompt',
+    price: '$55',
+    itinerary: [
+      { 
+        day: 1, 
+        title: 'Meeting Point: McDonald\'s & Tamales', 
+        description: 'Meet at 6:30 PM at the entrance to McDonald\'s (Plaza de Armas). We start with the famous savory tamales.', 
+        activities: ['Night tour introduction', 'History of Cusco street food', 'Savory tamales tasting'] 
+      },
+      { 
+        day: 2, 
+        title: 'Anticuchos', 
+        description: 'The soul of Cusco\'s night: legendary grilled beef heart skewers.', 
+        activities: ['Anticucho tasting', 'Salsa pairings', 'Meeting local street chefs'] 
+      },
+      { 
+        day: 3, 
+        title: 'Hidden Alley Papa Rellena', 
+        description: 'Discover authentic stuffed potatoes in a secret colonial passage.', 
+        activities: ['Papa rellena tasting', 'Historical alley tour', 'Local kitchen secrets'] 
+      },
+      { 
+        day: 4, 
+        title: 'Sweet Picarones', 
+        description: 'Warm, crispy pumpkin and sweet potato doughnuts drenched in fig syrup.', 
+        activities: ['Picarones demonstration', 'Traditional dessert history'] 
+      },
+      { 
+        day: 5, 
+        title: 'Chocolate & Pisco Tasting', 
+        description: 'Sample premium organic chocolate paired with the iconic Pisco.', 
+        activities: ['Organic chocolate sampling', 'Pisco pairing workshop'] 
+      },
+      { 
+        day: 6, 
+        title: 'Finale: Emoliente', 
+        description: 'Warm up with a traditional Peruvian herbal tea, the perfect night finisher.', 
+        activities: ['Herbal drink demonstration', 'Traditional health benefits', 'Final foodie tips'] 
+      }
+    ],
+    inclusions: ['Expert Foodie Guide', '6 Signature Food Stops', 'Pisco & Chocolate Tasting', 'Night Photography Spots', 'Local Recommendations'],
+    exclusions: ['Additional drinks', 'Tips', 'Hotel transfer'],
+  },
+  {
     id: 'salkantay-adventure-9d',
     name: 'Salkantay Adventure',
     category: 'Trek',
     duration: '9 Days',
     difficulty: 'Challenging',
     description: 'The ultimate 9-day backpacker circuit covering food, valley, trek, and Rainbow Mountain.',
-    longDescription: 'Our most comprehensive backpacker package. Designed for those who want to see it all without the stress of individual bookings. From the cobblestone streets of Cusco to the glaciers of Salkantay and the colors of Vinicunca.',
+    longDescription: 'Our most comprehensive backpacker package. Designed for those who want to see it all without the stress of individual bookings. From the night food crawl of Cusco to the glaciers of Salkantay.',
     image: 'salkantay-9d-prompt',
     price: '$485',
     itinerary: [
-      { day: 1, title: 'Cusco Food Tour', description: 'Sample the best of Andean flavors in local markets.', activities: ['San Pedro market visit', 'Street food tasting', 'Chicha tasting'] },
+      { day: 1, title: 'Inca Eats & Streets', description: 'Sample the best of Andean flavors in our famous night crawl.', activities: ['Night crawl start', 'Savory tamales', 'Anticuchos', 'Sweet picarones'] },
       { day: 2, title: 'Sacred Valley Exploration', description: 'Visit Pisac and Ollantaytambo ruins.', activities: ['Ruins exploration', 'Artisan market', 'Lunch in Urubamba'] },
       { day: 3, title: 'Salkantay Trek: Day 1', description: 'Ascend to the high camps near Humantay Lake.', activities: ['Humantay Lake hike', 'Glacial views'] },
       { day: 4, title: 'Salkantay Trek: Day 2', description: 'Conquer the Salkantay Pass (4,630m).', activities: ['High pass crossing', 'Glacier photography'] },
@@ -108,7 +159,7 @@ export const TOURS: TourDetail[] = [
     image: 'mtn-forest-prompt',
     price: '$995',
     itinerary: [
-      { day: 1, title: 'Cusco Welcome & Food Tour', description: 'Start your journey with a taste of Cusco.', activities: ['Market tour', 'Local treats'] },
+      { day: 1, title: 'Cusco Welcome & Inca Eats', description: 'Start your journey with a taste of Cusco at night.', activities: ['Night tour', 'Street food crawl', 'Local treats'] },
       { day: 2, title: 'Sacred Valley', description: 'History and landscapes of the Incas.', activities: ['Ruins', 'Market'] },
       { day: 3, title: 'Salkantay Trek Day 1', description: 'Ascend into the mountains.', activities: ['Lake hike'] },
       { day: 4, title: 'Salkantay Trek Day 2', description: 'The high pass.', activities: ['Glacier views'] },
@@ -130,7 +181,7 @@ export const TOURS: TourDetail[] = [
     duration: '2 Days',
     difficulty: 'Easy',
     description: 'Guaranteed entrance to Machu Picchu even if official tickets are sold out online.',
-    longDescription: 'Struggling to find tickets? Our Last Minute Machu Picchu program is designed specifically for travelers who couldn\'t secure official entrance tickets in advance. Through our local network and specialized circuit allocations, we guarantee your visit to the citadel with a professional licensed guide and full logistics included.',
+    longDescription: 'Struggling to find tickets? Our Last Minute Machu Picchu program is designed specifically for travelers who couldn\'t secure official entrance tickets in advance.',
     image: 'last-minute-prompt',
     price: '$385',
     itinerary: [
@@ -161,33 +212,13 @@ export const TOURS: TourDetail[] = [
     image: 'inka-jungle-prompt',
     price: '$470',
     itinerary: [
-      { 
-        day: 1, 
-        title: 'Abra Malaga - Santa Maria (Biking & Rafting)', 
-        description: 'Downhill mountain biking from snowy peaks to the high jungle followed by an afternoon of rafting on the river.', 
-        activities: ['Mountain biking descent', 'Tropical fruit plantation tour', 'White water rafting'] 
-      },
-      { 
-        day: 2, 
-        title: 'Santa Maria - Santa Teresa (Trekking)', 
-        description: 'Hike through original Inca paths and enjoy the Cocalmayo hot springs.', 
-        activities: ['Original Inca trail hiking', 'Flora and fauna spotting', 'Relaxing at thermal baths'] 
-      },
-      { 
-        day: 3, 
-        title: 'Santa Teresa - Aguas Calientes', 
-        description: 'Hike along the railway line with views of Machu Picchu\'s back side.', 
-        activities: ['Zip-lining adventure', 'Hiking by the riverside', 'Evening in Aguas Calientes town'] 
-      },
-      { 
-        day: 4, 
-        title: 'Machu Picchu Citadel', 
-        description: 'Guided tour of the world wonder at sunrise.', 
-        activities: ['Citadel tour', 'Panoramic views', 'Train return to Cusco'] 
-      },
+      { day: 1, title: 'Biking & Rafting', description: 'Mountain peaks to the high jungle.', activities: ['Mountain biking descent', 'White water rafting'] },
+      { day: 2, title: 'Inca Trail Trekking', description: 'Original Inca paths and hot springs.', activities: ['Trail hiking', 'Cocalmayo thermal baths'] },
+      { day: 3, title: 'Zip-lining & Hiking', description: 'Hike to Aguas Calientes town.', activities: ['Zip-lining adventure', 'Riverside walk'] },
+      { day: 4, title: 'Machu Picchu Sanctuary', description: 'Guided tour of the world wonder at sunrise.', activities: ['Citadel tour', 'Train return to Cusco'] },
     ],
-    inclusions: ['Professional Adventure Guide', 'Mountain Biking Equipment', 'Transportation Cusco-Trailhead', 'All Meals (excluding final dinner)', 'Entrance Ticket to Machu Picchu', 'Hostel Accommodations', 'River Rafting', 'Zip-lining', 'Bus Tickets (Aguas Calientes - Machu Picchu)'],
-    exclusions: ['Alcoholic drinks', 'Personal travel insurance', 'Tips'],
+    inclusions: ['Adventure Guide', 'Biking Equipment', 'Entrance Ticket to Machu Picchu', 'Rafting & Zip-lining', 'Hostel Stay'],
+    exclusions: ['Alcoholic drinks', 'Tips'],
   },
   {
     id: 'inka-trail-2-day',
@@ -251,37 +282,17 @@ export const TOURS: TourDetail[] = [
     duration: '4 Days',
     difficulty: 'Expert',
     description: 'A high-altitude circuit around the sacred Apu Ausangate and the Rainbow Mountain.',
-    longDescription: 'The Ausangate trek is a spectacular journey through the Vilcanota mountain range. It offers some of the most stunning landscapes in the Cusco region, including turquoise lakes and the famous Rainbow Mountain.',
+    longDescription: 'The Ausangate trek is a spectacular journey through the Vilcanota mountain range. It offers some of the most stunning landscapes in the Cusco region.',
     image: 'ausangate-prompt',
     price: '$520',
     itinerary: [
-      { 
-        day: 1, 
-        title: 'Cusco - Tinqui - Upis Lake - Upis', 
-        description: 'Drive from Cusco to Tinqui, trek towards the stunning Upis Lake and camp near the thermal springs.', 
-        activities: ['Scenic drive', 'Andean village visit', 'Upis hot springs'] 
-      },
-      { 
-        day: 2, 
-        title: 'Upis - Arapa Pass - Yancocha - Puka Cocha', 
-        description: 'Cross the challenging Arapa Pass (4,850m) and witness the multi-colored glacial lakes before reaching Puka Cocha.', 
-        activities: ['High pass ascent', 'Photography of turquoise lakes', 'Glacier camping'] 
-      },
-      { 
-        day: 3, 
-        title: 'Puka Cocha - Apacheta Pass - Ananta - Surini Pass - Queulla Cocha', 
-        description: 'A demanding day crossing two high passes with panoramic views of the Vilcanota range.', 
-        activities: ['High altitude endurance', 'Apacheta Pass crossing', 'Remote valley trekking'] 
-      },
-      { 
-        day: 4, 
-        title: 'Queulla Cocha - Rainbow Mountain - Red Valley - Cusco', 
-        description: 'The highlight: witness the colors of Vinicunca at sunrise followed by the dramatic Red Valley before returning to Cusco.', 
-        activities: ['Rainbow Mountain sunrise', 'Red Valley trek', 'Return to Cusco'] 
-      }
+      { day: 1, title: 'Upis Lake', description: 'Trek towards the stunning Upis Lake.', activities: ['Scenic drive', 'Andean village visit', 'Hot springs'] },
+      { day: 2, title: 'Arapa Pass', description: 'Cross the challenging Arapa Pass (4,850m).', activities: ['High pass ascent', 'Glacial lake photography'] },
+      { day: 3, title: 'Remote Valleys', description: 'Crossing high passes with panoramic views.', activities: ['Endurance hike', 'Remote peak scenery'] },
+      { day: 4, title: 'Rainbow Mountain', description: 'Witness the colors of Vinicunca at sunrise.', activities: ['Sunrise summit', 'Red Valley trek', 'Return to Cusco'] }
     ],
-    inclusions: ['Expert High-Altitude Guide', 'Horsemen & Mules', 'Quality Camping Gear', 'Oxygen & First Aid', 'All Meals', 'Transportation'],
-    exclusions: ['Sleeping bag', 'Tips', 'First breakfast', 'Last dinner'],
+    inclusions: ['High-Altitude Guide', 'Horsemen & Mules', 'Camping Gear', 'All Meals', 'Transportation'],
+    exclusions: ['Sleeping bag', 'Tips'],
   },
   {
     id: 'choquequirao-trek-4-day',
@@ -294,13 +305,13 @@ export const TOURS: TourDetail[] = [
     image: 'choquequirao-prompt',
     price: '$690',
     itinerary: [
-      { day: 1, title: 'Cusco - Chiquisca - Marampata', description: 'Descent into the deep Apurimac canyon and climb to the beautiful Marampata plateau.', activities: ['Canyon views', 'River crossing', 'Challenging ascent'] },
-      { day: 2, title: 'Marampata - Choquequirao Exploration - Marampata', description: 'Full day exploring the terraces and plazas of the majestic Choquequirao.', activities: ['Guided tour of ruins', 'Llama terraces', 'Sunset at the sanctuary'] },
-      { day: 3, title: 'Marampata - Chiquisca', description: 'Descent back to the canyon floor to enjoy the lush vegetation and warm climate.', activities: ['Photography of the valley', 'River views', 'Relax at camp'] },
-      { day: 4, title: 'Chiquisca - Capuliyoc - Cusco', description: 'Final climb back to the Capuliyoc lookout and return trip to Cusco.', activities: ['Final ascent', 'Capuliyoc panoramic view', 'Return to Cusco'] },
+      { day: 1, title: 'Cusco - Marampata', description: 'Descent into the deep Apurimac canyon.', activities: ['Canyon views', 'River crossing', 'Challenging ascent'] },
+      { day: 2, title: 'Choquequirao Exploration', description: 'Full day exploring the terraces and plazas.', activities: ['Guided tour of ruins', 'Llama terraces', 'Sunset view'] },
+      { day: 3, title: 'Marampata - Chiquisca', description: 'Descent back to the canyon floor.', activities: ['Photography of the valley', 'River views'] },
+      { day: 4, title: 'Capuliyoc - Cusco', description: 'Final climb back to the lookout and return.', activities: ['Final ascent', 'Capuliyoc panoramic view'] },
     ],
-    inclusions: ['Specialist Ruins Guide', 'Muleteers & Mules', 'Entrance Fees', 'Camping Equipment', 'All Meals', 'Private Transport'],
-    exclusions: ['Sleeping bag', 'Tips', 'Alcoholic drinks', 'Water on day 1'],
+    inclusions: ['Specialist Ruins Guide', 'Muleteers & Mules', 'Entrance Fees', 'Camping Equipment', 'All Meals'],
+    exclusions: ['Tips', 'Alcoholic drinks'],
   },
   {
     id: 'manu-national-park',
@@ -315,11 +326,11 @@ export const TOURS: TourDetail[] = [
     itinerary: [
       { day: 1, title: 'Cloud Forest to Rainforest', description: 'Descend from the Andes into the humid forest.', activities: ['Bird watching', 'Lodge stay'] },
       { day: 2, title: 'Deep Manu', description: 'River boat travel deep into the biosphere reserve.', activities: ['River navigation', 'Spotting caimans'] },
-      { day: 3, title: 'Macaw Clay Lick', description: 'Early morning spectacle of hundreds of colorful birds.', activities: ['Clay lick visit', 'Forest trails'] },
-      { day: 4, title: 'Return to Civilization', description: 'A final morning in the jungle before flying back to Cusco.', activities: ['Wildlife breakfast', 'Return travel'] },
+      { day: 3, title: 'Macaw Clay Lick', description: 'Early morning spectacle of colorful birds.', activities: ['Clay lick visit', 'Forest trails'] },
+      { day: 4, title: 'Return Journey', description: 'A final morning in the jungle before flying back.', activities: ['Wildlife breakfast', 'Return boat ride'] },
     ],
     inclusions: ['Naturalist Guide', 'Boat Transportation', 'Eco-Lodges', 'Meals', 'Park Entrance Fees'],
-    exclusions: ['Personal gear', 'Tips', 'Alcoholic beverages'],
+    exclusions: ['Tips', 'Alcoholic beverages'],
   },
   {
     id: 'tambopata-reserve-3-day',
@@ -328,16 +339,16 @@ export const TOURS: TourDetail[] = [
     duration: '3 Days',
     difficulty: 'Easy',
     description: 'Explore the crystalline waters of Sandoval Lake and walk among the jungle canopy.',
-    longDescription: 'Tambopata offers a high-density wildlife experience perfect for short visits. Witness giant river otters, caimans, and a vibrant canopy of life just hours from Puerto Maldonado.',
+    longDescription: 'Tambopata offers a high-density wildlife experience perfect for short visits. Witness giant river otters and caimans.',
     image: 'tambopata-prompt',
     price: '$390',
     itinerary: [
-      { day: 1, title: 'Cusco - Puerto Maldonado - Jungle Lodge', description: 'Flight and boat transfer to your eco-lodge followed by a night walk.', activities: ['River boat ride', 'Nocturnal wildlife spotting'] },
-      { day: 2, title: 'Sandoval Lake & Canopy Walkway', description: 'Canoe across the lake and walk 30 meters above the jungle floor.', activities: ['Canoeing', 'Giant otter spotting', 'Treetop bridges'] },
-      { day: 3, title: 'Parrot Clay Lick & Return', description: 'Early morning spectacle of hundreds of parrots before flying back.', activities: ['Bird watching spectacle', 'Final jungle breakfast', 'Airport transfer'] },
+      { day: 1, title: 'Cusco - Jungle Lodge', description: 'Flight and boat transfer to your eco-lodge.', activities: ['River boat ride', 'Nocturnal wildlife walk'] },
+      { day: 2, title: 'Sandoval Lake', description: 'Canoe across the lake and walk the canopy.', activities: ['Canoeing', 'Giant otter spotting', 'Treetop bridges'] },
+      { day: 3, title: 'Clay Lick & Return', description: 'Early morning bird spectacle before return.', activities: ['Bird watching', 'Final jungle breakfast', 'Airport transfer'] },
     ],
-    inclusions: ['Bilingual Naturalist Guide', 'Eco-Lodge Accommodation', 'All Meals in Jungle', 'Airport Transfers', 'Excursion Equipment'],
-    exclusions: ['Domestic Flights', 'Travel Insurance', 'Tips', 'Alcoholic Beverages'],
+    inclusions: ['Bilingual Naturalist Guide', 'Eco-Lodge Stay', 'All Meals in Jungle', 'Airport Transfers'],
+    exclusions: ['Domestic Flights', 'Tips'],
   }
 ];
 
@@ -365,8 +376,8 @@ export const BLOG_POSTS: BlogPost[] = [
 ];
 
 export const FAQS: FAQItem[] = [
-  { category: 'Booking', question: 'How do I book a free tour?', answer: 'Simply fill out our quick booking form! No deposit required.' },
+  { category: 'Booking', question: 'How do I book a free tour?', answer: 'Simply fill out our quick booking form! No deposit required, just a small spot security fee.' },
   { category: 'Trekking', question: 'What is the difficulty of the Inca Trail?', answer: 'It is considered moderate but high altitude makes it challenging for some.' },
   { category: 'Amazon', question: 'Do I need a yellow fever vaccine?', answer: 'It is highly recommended for jungle expeditions.' },
-  { category: 'Tipping', question: 'How much should I tip on free tours?', answer: 'Most people tip between $10-$20 USD depending on satisfaction.' }
+  { category: 'Tipping', question: 'How much should I tip on free tours?', answer: 'Most people tip between $10-$20 USD per person depending on satisfaction.' }
 ];

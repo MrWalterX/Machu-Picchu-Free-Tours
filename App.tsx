@@ -10,6 +10,9 @@ import AboutUs from './pages/AboutUs';
 import LastMinute from './pages/LastMinute';
 import Blog from './pages/Blog';
 import FAQ from './pages/FAQ';
+import Treks from './pages/Treks';
+import Amazon from './pages/Amazon';
+import FreeTours from './pages/FreeTours';
 import GeminiImage, { prefetchImage } from './components/GeminiImage';
 import Logo from './components/Logo';
 import { TOURS } from './constants';
@@ -26,9 +29,10 @@ declare global {
   }
 }
 
-const getTourPrompt = (tour: TourDetail) => {
+export const getTourPrompt = (tour: TourDetail) => {
   switch (tour.id) {
     case 'free-walking-tour-cusco': return "A friendly local guide holding a bright yellow umbrella explaining history to travelers in the beautiful Plaza de Armas of Cusco, sunny day, colonial architecture";
+    case 'food-tour-cusco': return "A vibrant nighttime street scene in Cusco, a local vendor serving piping hot picarones, anticuchos, and savory tamales under warm street lights, colonial walls in the background, steam rising, high-end travel photography";
     case 'machu-picchu-last-minute': return "A stunning close-up of the Machu Picchu stone structures with the iconic Huayna Picchu mountain in the background, very clear sky, professional travel photography";
     case 'inka-jungle-trek-4-day': return "Action shot of travelers mountain biking down a lush green mountain road in the Peruvian Andes, surrounded by tropical cloud forest, cinematic action photography";
     case 'salkantay-adventure-9d': return "A panoramic view of the Salkantay glacier peak with a line of colorful tents in the mountain valley foreground";
@@ -61,14 +65,9 @@ const ApiKeyGate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   useEffect(() => {
     if (hasKey) {
-      // Only prefetch the most essential hero and first featured images to avoid hitting quota
       prefetchImage("Wide-angle panoramic view of Machu Picchu ruins, featuring iconic stone terraces and the Huayna Picchu mountain peak under a vast, vibrant blue sky filled with scattered white puffy cumulus clouds, clear mountain sunlight, high-resolution professional travel photography, group of travelers on a grassy ridge in the bottom left", "16:9");
-      
-      // Prefetch the "Free Walking Tour" as it's the most common entry point
       const freeTour = TOURS.find(t => t.id === 'free-walking-tour-cusco');
       if (freeTour) prefetchImage(getTourPrompt(freeTour), "16:9");
-
-      // Prefetch one secondary banner to improve perceived performance
       prefetchImage("A group of diverse young backpackers with large packs laughing together in a colorful Cusco street during sunset, cinematic lighting", "16:9");
     }
   }, [hasKey]);
@@ -122,7 +121,7 @@ const ApiKeyGate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <>{children}</>;
 };
 
-const TourCard: React.FC<{ tour: TourDetail }> = ({ tour }) => {
+export const TourCard: React.FC<{ tour: TourDetail }> = ({ tour }) => {
   const [showDetails, setShowDetails] = useState(false);
   const navigate = useNavigate();
 
@@ -131,7 +130,7 @@ const TourCard: React.FC<{ tour: TourDetail }> = ({ tour }) => {
   };
 
   return (
-    <div className="bg-white rounded-[2rem] shadow-lg border border-gray-100 overflow-hidden flex flex-col h-fit transition-all duration-300 hover:shadow-xl">
+    <div className="bg-white rounded-[2rem] shadow-lg border border-gray-100 overflow-hidden flex flex-col h-fit transition-all duration-300 hover:shadow-xl font-['Quicksand']">
       <div className="h-64 overflow-hidden relative group">
         <GeminiImage 
           prompt={getTourPrompt(tour)}
@@ -175,28 +174,14 @@ const TourCard: React.FC<{ tour: TourDetail }> = ({ tour }) => {
 
         {showDetails && (
           <div className="mt-6 space-y-8 animate-fadeIn border-t pt-8">
-            {tour.category === 'Free' && (
-              <div className="space-y-4">
-                <h3 className="font-bold text-[#011A52] text-lg flex items-center gap-2">
-                  <span className="text-[#FFAF04]">📍</span> Meeting Point: McDonald's
-                </h3>
-                <p className="text-xs text-gray-500">
-                  Our Team gathers right at the entrance of McDonald's in the Plaza de Armas (Main Square). Look for the yellow umbrellas.
-                </p>
-                <div className="w-full h-48 rounded-2xl overflow-hidden shadow-inner border border-gray-200">
-                  <iframe 
-                    title="Meeting Point Map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1939.882417757375!2d-71.9794351!3d-13.5161474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x916dd671399435b7%3A0xc3f83794a0d944e7!2sMcDonald&#39;s!5e0!3m2!1sen!2spe!4v1700000000000!5m2!1sen!2spe" 
-                    width="100%" 
-                    height="100%" 
-                    style={{ border: 0 }} 
-                    allowFullScreen={true} 
-                    loading="lazy" 
-                    referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                </div>
-              </div>
-            )}
+            <div className="space-y-4">
+              <h3 className="font-bold text-[#011A52] text-lg flex items-center gap-2">
+                <span className="text-[#FFAF04]">📍</span> Meeting Point: McDonald's
+              </h3>
+              <p className="text-xs text-gray-500">
+                Our Team gathers at the entrance of McDonald's in the Plaza de Armas (Main Square). Look for the yellow umbrellas.
+              </p>
+            </div>
 
             <div className="space-y-6">
               <h3 className="font-bold text-[#011A52] text-lg flex items-center gap-2">
@@ -266,61 +251,6 @@ const TourCard: React.FC<{ tour: TourDetail }> = ({ tour }) => {
   );
 };
 
-const FreeToursHub = () => {
-  const freeTours = TOURS.filter(t => t.category === 'Free');
-  return (
-    <div className="py-24 px-6 max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#011A52] mb-4">Free Walking Tours</h1>
-          <p className="text-lg text-[#666666]">Discover the heart of Cusco with our expert local Team. Experience the culture and history of the Incas with no upfront cost.</p>
-        </div>
-        <div className="bg-[#FFAF04]/10 border border-[#FFAF04] px-6 py-3 rounded-2xl flex items-center gap-3">
-           <span className="text-[#011A52] font-bold text-sm uppercase tracking-tighter">Departing Daily: 10AM, 1PM & 3:30PM</span>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-4xl mx-auto">
-        {freeTours.map(tour => <TourCard key={tour.id} tour={tour} />)}
-      </div>
-    </div>
-  );
-};
-
-const TrekHub = () => {
-  const treks = TOURS.filter(t => t.category === 'Trek' || t.id === 'mountains-rainforest-11d');
-  return (
-    <div className="py-24 px-6 max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#011A52] mb-4">Andean Trek Expeditions</h1>
-          <p className="text-lg text-[#666666]">From the iconic Inca Trail to the remote peaks of Ausangate, our small-group expeditions offer an authentic connection to the Andes led by our Team.</p>
-        </div>
-        <div className="bg-[#FFAF04]/10 border border-[#FFAF04] px-6 py-3 rounded-2xl flex items-center gap-3">
-          <span className="text-[#011A52] font-bold text-sm uppercase tracking-tighter">2026 Permits Now Open</span>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {treks.map(trek => <TourCard key={trek.id} tour={trek} />)}
-      </div>
-    </div>
-  );
-};
-
-const AmazonHub = () => {
-  const jungleTours = TOURS.filter(t => t.category === 'Amazon');
-  return (
-    <div className="py-24 px-6 max-w-7xl mx-auto">
-      <div className="mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#011A52] mb-4">Amazon Jungle Expeditions</h1>
-        <p className="text-lg text-[#666666] max-w-2xl">Discover the world's most biodiverse ecosystems with our Team of certified naturalist guides.</p>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {jungleTours.map(tour => <TourCard key={tour.id} tour={tour} />)}
-      </div>
-    </div>
-  );
-};
-
 const App: React.FC = () => {
   return (
     <ApiKeyGate>
@@ -328,9 +258,9 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/backpackers" element={<Layout><Backpackers /></Layout>} />
-          <Route path="/free-tours" element={<Layout><FreeToursHub /></Layout>} />
-          <Route path="/treks" element={<Layout><TrekHub /></Layout>} />
-          <Route path="/amazon" element={<Layout><AmazonHub /></Layout>} />
+          <Route path="/free-tours" element={<Layout><FreeTours /></Layout>} />
+          <Route path="/treks" element={<Layout><Treks /></Layout>} />
+          <Route path="/amazon" element={<Layout><Amazon /></Layout>} /> 
           <Route path="/inquiry" element={<Layout><InquiryForm /></Layout>} />
           <Route path="/success" element={<Layout><Success /></Layout>} />
           <Route path="/about" element={<Layout><AboutUs /></Layout>} />

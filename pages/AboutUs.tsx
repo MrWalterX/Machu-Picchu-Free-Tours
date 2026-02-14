@@ -1,8 +1,16 @@
 
-import React from 'react';
+import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import GeminiImage from '../components/GeminiImage';
 
 const AboutUs: React.FC = () => {
+  const navigate = useNavigate();
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const values = [
     {
       title: "Radical Authenticity",
@@ -27,8 +35,21 @@ const AboutUs: React.FC = () => {
     { name: "Daniel", role: "Amazon Naturalist", bio: "Raised near Manu, Daniel has an uncanny ability to spot wildlife before anyone else." }
   ];
 
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+    
+    const summary = `About Us Inquiry:\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
+    const waLink = `https://wa.me/51946666444?text=${encodeURIComponent(summary)}`;
+    window.open(waLink, '_blank');
+    navigate('/success', { state: { tour: "General Inquiry" } });
+  };
+
   return (
-    <div className="animate-fadeIn">
+    <div className="animate-fadeIn font-['Quicksand']">
       {/* Hero Header */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -109,7 +130,7 @@ const AboutUs: React.FC = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-[#011A52] mb-4">Meet Your Local Hosts</h2>
               <p className="text-gray-500">Our guides are not just experts; they are the heart and soul of the experience.</p>
             </div>
-            <button className="text-[#011A52] font-bold border-b-2 border-[#FFAF04] pb-1">See All Guides →</button>
+            <button onClick={() => navigate('/treks')} className="text-[#011A52] font-bold border-b-2 border-[#FFAF04] pb-1">See All Tours →</button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -145,13 +166,67 @@ const AboutUs: React.FC = () => {
           <div className="relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">Ready to start your adventure?</h2>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-[#FFAF04] text-[#011A52] px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition shadow-xl uppercase tracking-tighter">
+              <button onClick={() => navigate('/treks')} className="bg-[#FFAF04] text-[#011A52] px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition shadow-xl uppercase tracking-tighter">
                 Browse All Tours
               </button>
-              <button className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-5 rounded-full font-black text-lg hover:bg-white/20 transition uppercase tracking-tighter">
+              <button onClick={scrollToForm} className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-5 rounded-full font-black text-lg hover:bg-white/20 transition uppercase tracking-tighter">
                 Contact the Team
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Direct Inquiry Form Section */}
+      <section ref={formRef} className="py-24 px-6 bg-[#f8f7f5]">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-[#FFAF04] font-black uppercase tracking-[0.4em] text-sm mb-4 block">Get In Touch</span>
+            <h2 className="text-4xl font-bold text-[#011A52]">Direct Inquiry</h2>
+            <p className="text-gray-500 mt-4">Have a special request or just want to say hi? Fill out the form below and our team will get back to you shortly.</p>
+          </div>
+          
+          <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-xl border border-gray-100">
+            <form onSubmit={handleFormSubmit} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-[#011A52] ml-2">Your Name</label>
+                  <input 
+                    required 
+                    name="name"
+                    type="text" 
+                    placeholder="E.g. Alexander von Humboldt"
+                    className="w-full bg-gray-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-[#FFAF04] transition outline-none"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-[#011A52] ml-2">Email Address</label>
+                  <input 
+                    required 
+                    name="email"
+                    type="email" 
+                    placeholder="alex@example.com"
+                    className="w-full bg-gray-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-[#FFAF04] transition outline-none"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-widest text-[#011A52] ml-2">How can we help you?</label>
+                <textarea 
+                  required 
+                  name="message"
+                  rows={5} 
+                  placeholder="Tell us about your travel plans, dates, or questions..."
+                  className="w-full bg-gray-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-[#FFAF04] transition outline-none resize-none"
+                ></textarea>
+              </div>
+              <button 
+                type="submit" 
+                className="w-full bg-[#011A52] text-white py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-[#022574] transition shadow-lg transform active:scale-95"
+              >
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </section>
