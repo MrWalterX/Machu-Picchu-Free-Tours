@@ -1,7 +1,0 @@
-{
-  "name": "Machu Picchu Free Tours",
-  "description": "A premium, SEO-optimized travel platform for exploring Cusco and the Amazon, featuring free walking tours, mountain treks, and jungle expeditions.",
-  "requestFramePermissions": [
-    "geolocation"
-  ]
-}
